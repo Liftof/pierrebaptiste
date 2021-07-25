@@ -1,0 +1,7 @@
+.lien-externe {
+color: #3961c5;
+font-weight: bold;
+}
+.lien-externe:hover {
+color: #bb2323;
+}
