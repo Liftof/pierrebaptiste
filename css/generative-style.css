@@ -1,0 +1,45 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrollbars from the canvas */
+    background-color: #111; /* Dark background */
+    color: #fff; /* Default text color for overlays */
+    font-family: 'Arial', sans-serif; /* Fallback font */
+}
+
+#livingCanvas {
+    display: block; /* Remove extra space below canvas */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#infoOverlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2; /* Ensure overlay is above canvas */
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+    border-radius: 5px;
+    display: none; /* Hidden by default, shown by JS */
+}
+
+#infoOverlay h1 {
+    font-size: 1.5em;
+    margin: 0 0 10px 0;
+    color: #eee;
+}
+
+#infoOverlay a {
+    color: #8af; /* Light blue for links */
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#infoOverlay a:hover {
+    color: #acf;
+    text-decoration: underline;
+}

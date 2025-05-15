@@ -1,0 +1,65 @@
+body {
+    background-color: #000000;
+    color: #00FF00; /* Bright green */
+    font-family: 'Lucida Console', 'Courier New', Courier, monospace;
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 0;
+    padding: 10px;
+    overflow-y: scroll; /* Ensure scrollbar is always visible if content overflows */
+}
+
+#terminal {
+    width: 100%;
+    height: calc(100vh - 20px); /* Full viewport height minus padding */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Allow terminal content to scroll */
+}
+
+#output {
+    flex-grow: 1;
+    white-space: pre-wrap; /* Preserve whitespace and wrap lines */
+    word-break: break-all; /* Break long words to prevent overflow */
+}
+
+.prompt-line {
+    display: flex;
+    align-items: center;
+}
+
+.prompt {
+    margin-right: 8px;
+}
+
+#commandInput {
+    background-color: transparent;
+    border: none;
+    color: #00FF00;
+    font-family: inherit;
+    font-size: inherit;
+    flex-grow: 1;
+    outline: none;
+    caret-color: #00FF00;
+}
+
+/* Blinking cursor effect */
+#commandInput:focus {
+    animation: blink-caret 1s step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to { box-shadow: 1px 0 0 0 #00FF00; } /* Simulates cursor by text color */
+    50% { box-shadow: none; }
+}
+
+/* Styling for links within the terminal output */
+#output a {
+    color: #33CCFF; /* A slightly different shade of blue/cyan for links */
+    text-decoration: underline;
+}
+
+#output a:hover {
+    color: #66FFFF;
+}

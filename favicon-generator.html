@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minimal Favicon Generator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: white;
+        }
+        #favicon {
+            border: 1px solid #999;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="favicon" width="32" height="32"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('favicon');
+        const ctx = canvas.getContext('2d');
+        
+        // Clear canvas with white background
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, 32, 32);
+        
+        // Draw the "pb" text
+        ctx.fillStyle = 'black';
+        ctx.font = '16px Times New Roman';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('pb', 16, 16);
+        
+        // Output as data URL
+        console.log(canvas.toDataURL());
+    </script>
+</body>
+</html>
