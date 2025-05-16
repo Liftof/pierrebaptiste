@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'sound1', name: 'Allez-hop', fileName: 'Allez-hop.mp3' },
         { id: 'sound2', name: 'Tchack', fileName: 'tchack.mp3' },
         { id: 'sound3', name: 'Coucou', fileName: 'Coucou.mp3' },
-        { id: 'sound4', name: 'TQT', fileName: 'tqt.mp3' }
+        { id: 'sound4', name: 'TQT', fileName: 'tqt.mp3' },
+        { id: 'sound5', name: 'Souhaits', fileName: 'souhaits.mp3' }
     ];
     
     // Current active card
