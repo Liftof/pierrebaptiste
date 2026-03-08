@@ -76,6 +76,25 @@
         .role {
             color: var(--secondary-color);
         }
+        .ascii-cursor-layer {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ascii-cursor-particle {
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-family: "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -0.05em;
+            user-select: none;
+            will-change: transform, opacity;
+        }
     </style>
     
     <!-- Analytics -->
@@ -85,6 +104,7 @@
       data-domain="pierrebaptiste.me"
       src="https://datafa.st/js/script.js">
     </script>
+    <script defer src="js/ascii-cursor.js"></script>
 </head>
 <body>
     <h1>pierre-baptiste borges</h1>
