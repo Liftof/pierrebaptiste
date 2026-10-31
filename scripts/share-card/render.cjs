@@ -18,7 +18,7 @@ async function main() {
   tile.getContext('2d').drawImage(fabric, 0, 0, tile.width, tile.height);
   ctx.fillStyle = ctx.createPattern(tile, 'repeat');
   ctx.fillRect(0, 0, W, H);
-  ctx.fillStyle = 'rgba(21,80,214,.30)';
+  ctx.fillStyle = 'rgba(8,101,231,.72)';
   ctx.fillRect(0, 0, W, H);
   ctx.fillStyle = '#382416';
   ctx.fillRect(0, H-28, W, 28);

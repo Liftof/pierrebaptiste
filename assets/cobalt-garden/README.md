@@ -27,3 +27,5 @@ The active footer uses `garden-v2.webp`: individual, slender botanical flowers w
 Flower prompt: original panoramic 3:1 transparent hand-painted row of 16 separate upright flowers, small refined heads, long thin stems, only two or three leaves each, airy gaps, white daisy, cosmos, delphinium, tulip, poppy, narcissus, lavender, rose, cornflower, anemone and iris; tactile naive botanical oil painting, no meadow clutter. Continuous dark brown soil across the bottom 15%, solid to the absolute bottom and both side edges. No text, logo or backdrop.
 
 Canvas prompt: seamless macro texture of real coarse linen painted vivid cobalt blue close to #1550d6. Organic irregular woven fibers showing through thin blue oil pigment, minute impasto and brush marks, even front lighting and low color variation. No synthetic grid, gradient, folds, vignette, objects or text.
+
+Normal-mode readability: the custom linen texture is now under a 72% even cobalt paint wash. This brings its contrast and blue balance closer to the reference site, instead of letting the raw macro weave compete with the text. Reader and homepage use the same treatment; reading mode adds its blur on top.
