@@ -9,3 +9,5 @@ All editorial text, inline emphasis, titles, dates, outbound links, 16 illustrat
 Each page is plain static HTML with shared `assets/reader.css`. The sidebar's return link opens the homepage's Writing section. Article pages provide a local canonical URL, article metadata, Article structured data, responsive image dimensions and the original publication link.
 
 The production site remains on GitHub Pages. The Vercel build copies static articles/assets into dist and rewrites absolute metadata URLs for the protected preview only.
+
+Reading mode is enabled by default. Its accessible switch blurs only the canvas background, keeping article text and images sharp. The choice is retained locally across articles.
