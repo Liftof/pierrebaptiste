@@ -8,22 +8,22 @@ const { createCanvas, loadImage, ImageData } = require('@napi-rs/canvas');
 const ffmpegPath = require('ffmpeg-static');
 const root = path.resolve(__dirname, '../..');
 const assetDir = path.join(root, 'assets/cobalt-garden');
-const W = 1200, H = 630, GH = 300, GY = H - GH, FPS = 30, SECONDS = 8, FRAMES = FPS * SECONDS;
+const W = 1200, H = 630, GH = 210, GY = H - GH, FPS = 30, SECONDS = 8, FRAMES = FPS * SECONDS;
 
 async function main() {
   const canvas = createCanvas(W, H);
   const ctx = canvas.getContext('2d');
-  const base = ctx.createImageData(W, H);
-  let seed = 1549841;
-  const random = () => { seed ^= seed << 13; seed ^= seed >>> 17; seed ^= seed << 5; return (seed >>> 0) / 4294967296; };
-  // Fine, static linen grain: same cobalt as the homepage, no flicker.
-  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-    const i = (y * W + x) * 4;
-    const weave = ((y % 4 === 0) ? 2 : 0) - ((x % 4 === 0) ? 1.6 : 0);
-    const grain = (random() - .5) * 5 + weave;
-    base.data[i] = 21 + grain; base.data[i+1] = 80 + grain; base.data[i+2] = 214 + grain; base.data[i+3] = 255;
-  }
-  const art = await loadImage(path.join(assetDir, 'garden.webp'));
+  const fabric = await loadImage(path.join(assetDir, 'canvas.jpg'));
+  const tile = createCanvas(680, Math.round(680 * fabric.height / fabric.width));
+  tile.getContext('2d').drawImage(fabric, 0, 0, tile.width, tile.height);
+  ctx.fillStyle = ctx.createPattern(tile, 'repeat');
+  ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = 'rgba(21,80,214,.30)';
+  ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#382416';
+  ctx.fillRect(0, H-28, W, 28);
+  const base = ctx.getImageData(0, 0, W, H);
+  const art = await loadImage(path.join(assetDir, 'garden-v2.webp'));
   const gardenCanvas = createCanvas(W + 80, GH);
   const gctx = gardenCanvas.getContext('2d');
   const tileW = art.width / art.height * GH;
@@ -37,10 +37,10 @@ async function main() {
     const out = Buffer.from(base.data);
     for (let y = 0; y < GH; y++) {
       // Roots and soil are fixed. Bending increases towards flower heads.
-      const height = Math.max(0, (.905 * GH - y) / (.905 * GH));
+      const height = Math.max(0, (.84 * GH - y) / (.84 * GH));
       const bend = Math.pow(height, 1.7);
       for (let x = 0; x < W; x++) {
-        const wind = 11 * Math.sin(theta + phases[x]) + 2.7 * Math.sin(2 * theta - x / 180);
+        const wind = 6 * Math.sin(theta + phases[x]) + 1.7 * Math.sin(2 * theta - x / 180);
         const sx = x + 40 - bend * wind;
         const sy = Math.min(GH-1.001, Math.max(0, y - bend * 1.4 * Math.sin(theta + phases[x] + .4)));
         const ix = Math.floor(sx), iy = Math.floor(sy), fx = sx - ix, fy = sy - iy;
@@ -72,7 +72,7 @@ async function main() {
     const i=(y*W+x)*4;
     if (first[i]!==middle[i] || first[i+1]!==middle[i+1] || first[i+2]!==middle[i+2]) {
       motionPixels++;
-      if(y >= GY + Math.ceil(GH*.905)) rootChanges++;
+      if(y >= GY + Math.ceil(GH*.84)) rootChanges++;
     }
   }
   if (!motionPixels || rootChanges) throw new Error('Wind/root check failed');

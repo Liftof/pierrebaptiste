@@ -1,0 +1,38 @@
+*{box-sizing:border-box}
+:root{--blue:#1550d6;--white:#fffdf5;--muted:#dce5ff}
+html{min-height:100%;background:var(--blue);scroll-behavior:smooth}
+body{margin:0;color:var(--white);font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;background-color:var(--blue);background-image:linear-gradient(rgba(21,80,214,.40),rgba(21,80,214,.40)),url('/assets/cobalt-garden/canvas.jpg');background-size:auto,680px auto;background-attachment:fixed;min-width:280px}
+.reader{display:grid;grid-template-columns:174px minmax(0,680px);gap:64px;padding:56px 64px 96px;max-width:1120px;min-height:calc(100svh - 150px)}
+.rail{position:sticky;top:56px;align-self:start;font-size:14px;line-height:1.5}
+.identity{font-size:16px;line-height:1.55;font-weight:500;text-decoration:none;display:block;margin-bottom:30px;letter-spacing:-.025em}
+.identity span{display:block}
+.back{display:inline-flex;align-items:center;gap:8px;font-size:13px;text-decoration:none;color:var(--muted);min-height:32px}
+.back svg{width:15px;height:15px;flex-shrink:0}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.2em;text-decoration-color:#bbcfff}a:hover{text-decoration-color:white}a:focus-visible{outline:2px solid white;outline-offset:5px;border-radius:2px}
+article{min-width:0;max-width:680px}
+.article-header{margin-bottom:40px}
+.eyebrow{font-size:12px;line-height:1.6;color:var(--muted);margin:0 0 19px;letter-spacing:.015em}
+h1{font-size:clamp(31px,3.5vw,43px);line-height:1.16;letter-spacing:-.045em;font-weight:500;text-wrap:balance;margin:0}
+.article-body{font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;font-size:20px;line-height:1.79;letter-spacing:-.012em;overflow-wrap:break-word;hyphens:manual}
+.article-body p{margin:0 0 1.35em}
+.article-body strong{font-weight:700}
+.article-body h2,.article-body h3{font-family:Inter,-apple-system,sans-serif;font-size:25px;font-weight:500;line-height:1.35;letter-spacing:-.035em;margin:2.1em 0 .85em;text-wrap:balance;scroll-margin-top:40px}
+.article-body h4{font-family:Inter,-apple-system,sans-serif;font-size:22px;line-height:1.5;letter-spacing:-.025em;font-weight:400;margin:0 0 1.5em}
+.article-body blockquote{font-style:italic;margin:1.6em 0 1.6em 1.1em;color:#fff}
+.article-body ul,.article-body ol{padding-left:1.3em;margin:0 0 1.5em}
+.article-body li{padding-left:.2em;margin:.5em 0}
+.article-body figure{margin:2em 0 2.2em}
+.article-body figure:first-child{margin-top:0}
+.article-body img{display:block;width:100%;height:auto;max-width:100%;border-radius:2px}
+.article-body figcaption{font:12px/1.6 Inter,-apple-system,sans-serif;text-align:center;color:var(--muted);letter-spacing:0;margin:10px 6px 0;hyphens:none}
+.article-body hr{border:0;height:1px;background:#ffffff35;margin:2em 0}
+.article-footer{font-size:13px;line-height:1.7;color:var(--muted);margin-top:64px}
+.article-footer p{margin:0 0 24px}
+.article-next{display:block;color:var(--white);font-size:16px;line-height:1.5;max-width:580px;margin:32px 0 24px}
+.article-next small{display:block;font-size:11px;color:var(--muted);letter-spacing:.04em;margin-bottom:8px}
+.garden{height:150px;position:relative;background-image:url('/assets/cobalt-garden/garden-v2.webp'),linear-gradient(to top,#382416 0 22px,transparent 22px);background-size:auto 100%,100% 100%;background-repeat:repeat-x,no-repeat;background-position:center bottom;pointer-events:none}
+::selection{background:#fffdf5;color:#1550d6}
+@media(min-width:1400px){.reader{gap:90px;grid-template-columns:174px minmax(0,700px);max-width:1220px}.article-body{font-size:21px}}
+@media(max-width:800px){.reader{grid-template-columns:minmax(0,1fr);gap:34px;padding:30px 28px 70px;max-width:740px;margin:0 auto}.rail{position:static;display:flex;align-items:flex-start;justify-content:space-between;gap:18px}.identity{font-size:14px;margin:0}.identity span{display:inline}.identity span+span::before{content:' '}.back{min-height:24px;font-size:12px;white-space:nowrap}.article-header{margin-bottom:32px}h1{font-size:34px}.article-body{font-size:19px;line-height:1.78}.article-body h2,.article-body h3{font-size:23px}.article-body h4{font-size:20px}.garden{height:135px}}
+@media(max-width:360px){.reader{padding-inline:22px}.identity{max-width:130px}.article-body{font-size:18px}h1{font-size:30px}.back{white-space:normal}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
