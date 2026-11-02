@@ -49,7 +49,7 @@
     p { margin: 0 0 18px; text-wrap: pretty; }
     a { color: inherit; text-decoration-thickness: 1px; text-decoration-color: #b4c8f2; text-underline-offset: .21em; transition: text-decoration-color .18s ease; }
     a:hover { text-decoration-color: #fff; }
-    a:focus-visible, summary:focus-visible { outline: 2px solid var(--white); outline-offset: 6px; border-radius: 2px; }
+    a:focus-visible, summary:focus-visible, button:focus-visible { outline: 2px solid var(--white); outline-offset: 6px; border-radius: 2px; }
     ::selection { color: var(--blue); background: var(--white); }
     .explore { margin-top: 29px; }
     details { border: 0; }
@@ -74,10 +74,18 @@
     .socials a:hover { opacity: 1; }
     .socials svg { width: 17px; height: 17px; fill: currentColor; }
     .location { display: block; color: var(--muted); margin-top: 15px; }
-    .garden { height: var(--garden-height); flex-shrink: 0; position: relative; margin-top: auto; pointer-events: none; background-image: url(assets/cobalt-garden/garden-v2.webp), linear-gradient(to top, #382416 0 20px, transparent 20px); background-position: center bottom; background-size: auto 100%, 100% 100%; background-repeat: repeat-x, no-repeat; }
+    .garden { height: var(--garden-height); flex-shrink: 0; position: relative; margin-top: auto; background-image: url(assets/cobalt-garden/garden-v2.webp), linear-gradient(to top, #382416 0 20px, transparent 20px); background-position: center bottom; background-size: auto 100%, 100% 100%; background-repeat: repeat-x, no-repeat; }
+    .garden[data-rendered] { background-image: linear-gradient(to top, #382416 0 20px, transparent 20px); }
+    .garden canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .garden-motion { position: absolute; right: 16px; bottom: 7px; width: 28px; height: 28px; display: grid; place-items: center; padding: 0; color: var(--white); background: rgba(31,27,21,.55); border: 1px solid rgba(255,253,245,.28); border-radius: 50%; cursor: pointer; }
+    .garden-motion:hover { background: rgba(31,27,21,.85); }
+    .garden-motion:focus-visible { outline-offset: 3px; border-radius: 50%; }
+    .garden-motion svg { width: 11px; height: 11px; fill: currentColor; }
+    .garden-motion .play, .garden-motion[data-paused="true"] .pause, .garden [hidden] { display: none; }
+    .garden-motion[data-paused="true"] .play { display: block; }
     @media (max-width: 700px) { main { padding: 34px 28px 55px; } .intro { display: block; } h1 { margin-bottom: 25px; } h1 span { display: inline; } h1 span + span::before { content: ' '; } .copy { max-width: 446px; } p { margin-bottom: 17px; } .explore { margin-top: 26px; } footer { margin-top: 27px; } }
     @media (max-width: 360px) { main { padding-inline: 22px; } body { font-size: 15px; } }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } .garden[data-rendered] { background-image: url(assets/cobalt-garden/garden-v2.webp), linear-gradient(to top, #382416 0 20px, transparent 20px); } .garden canvas, .garden-motion { display: none; } }
   </style>
 <meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:locale" content="en_US"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"></head>
 <body>
@@ -129,8 +137,15 @@
         </div>
       </div>
     </main>
-    <div class="garden" aria-hidden="true"></div>
+    <div class="garden">
+      <canvas aria-hidden="true" hidden></canvas>
+      <button class="garden-motion" type="button" aria-label="Pause flower animation" title="Pause flower animation" hidden>
+        <svg class="pause" aria-hidden="true" viewBox="0 0 12 12"><path d="M2 1h3v10H2zm5 0h3v10H7z"/></svg>
+        <svg class="play" aria-hidden="true" viewBox="0 0 12 12"><path d="m3 1 8 5-8 5z"/></svg>
+      </button>
+    </div>
   </div>
+  <script src="/assets/garden.js" defer></script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",

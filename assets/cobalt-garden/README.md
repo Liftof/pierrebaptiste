@@ -14,7 +14,7 @@ The root `vercel.json` declares a buildless static preview; the production websi
 
 ## Animated sharing card
 
-`share-card.mp4`: 1200 × 630, 8 seconds, 30 fps, H.264 Main / yuv420p, silent, fast-start MP4. `share-card.jpg` is the matching static fallback. Flowers move with a periodic height-dependent displacement field; the soil and roots stay fixed. The loop closes exactly, and the original illustration is retained. The homepage itself keeps its approved static garden.
+`share-card.mp4`: 1200 × 630, 8 seconds, 30 fps, H.264 Main / yuv420p, silent, fast-start MP4. `share-card.jpg` is the matching static fallback. Flowers move with a periodic height-dependent displacement field; the soil and roots stay fixed. The loop closes exactly, and the original illustration is retained.
 
 Preview the card at `/share.html`. `og:video` targets the direct MP4 and `og:image` / `twitter:image` target the JPEG. Actual inline playback is decided by each app; it is supported by Apple's Messages rich links (https://developer.apple.com/videos/play/tech-talks/205/), but is not promised on every social network. The authenticated Vercel preview cannot be scraped by unauthenticated social crawlers. Production URLs are committed; the static Vercel build rewrites absolute metadata URLs to that deployment's `VERCEL_URL`, before serving HTML. No client-side metadata injection is used.
 
@@ -29,3 +29,9 @@ Flower prompt: original panoramic 3:1 transparent hand-painted row of 16 separat
 Canvas prompt: seamless macro texture of real coarse linen painted vivid cobalt blue close to #1550d6. Organic irregular woven fibers showing through thin blue oil pigment, minute impasto and brush marks, even front lighting and low color variation. No synthetic grid, gradient, folds, vignette, objects or text.
 
 Normal-mode readability: the custom linen texture is now under a 72% even cobalt paint wash. This brings its contrast and blue balance closer to the reference site, instead of letting the raw macro weave compete with the text. Reader and homepage use the same treatment; reading mode adds its blur on top.
+
+## Interactive homepage garden — 2026-11-02
+
+`/assets/garden.js` adds a lightweight WebGL displacement to the same painting. Slow travelling gusts move the flowers; mouse/pen movement produces local damped rebounds. The lowest 16% stays fixed so the roots and soil do not drift. The source artwork, layout, articles and sharing video are unchanged.
+
+The canvas is limited to the footer, at up to 2× pixel density and 30 frames per second. It sleeps when offscreen or when the document is hidden. Touch gestures retain native scrolling. A small keyboard-accessible pause/resume button remembers the visitor's choice locally. `prefers-reduced-motion: reduce` disables both wind and pointer motion, including when changed during a visit. The original CSS painting remains the fallback without JavaScript, without WebGL, on image/shader failure, and during graphics-context loss.
