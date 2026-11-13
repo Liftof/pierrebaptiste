@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+<style>@keyframes drift{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(0.6deg)}}.art{transform-origin:320px 200px;animation:drift 7s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.art{animation:none}}</style>
+<rect width="640" height="400" fill="#fff7e8"/>
+<g class="art"><rect x="101" y="96" width="233" height="174" rx="22" fill="#1456df" transform="rotate(-12 217 183)"/>
+ <circle cx="215" cy="182" r="48" fill="#ffd34d"/>
+ <rect x="282" y="135" width="242" height="182" rx="22" fill="#f35b45" transform="rotate(8 403 226)"/>
+ <path d="m354 267 50-93 49 93z" fill="#fff7e8"/><circle cx="491" cy="88" r="20" fill="#208866"/>
+ <path d="M157 319h80m-40-40v80" stroke="#208866" stroke-width="8" stroke-linecap="round"/></g>
+</svg>

@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Hover preview checks</title>
+<style>body{margin:20px;font:15px/1.6 system-ui;background:#f6eee3;color:#193152}h1{font-size:23px}iframe{display:block;border:0;background:#0b5fe3;width:1200px;height:800px;transform-origin:top left;zoom:.7}li[data-pass=false]{color:#b32121}li[data-pass=true]{color:#187649}#status{font-weight:700}</style>
+<h1>Hover preview checks</h1><p id="status">Running…</p><ul id="results"></ul><iframe id="site" src="/"></iframe>
+<script>
+const iframe=document.querySelector('iframe'),results=document.querySelector('#results');
+const pause=ms=>new Promise(r=>setTimeout(r,ms));
+function check(name,condition){const li=document.createElement('li');li.dataset.pass=!!condition;li.textContent=(condition?'PASS · ':'FAIL · ')+name;results.append(li);if(!condition)throw new Error(name);}
+iframe.onload=async()=>{
+ try{
+  const w=iframe.contentWindow,d=w.document;
+  await pause(350);
+  const card=d.querySelector('.link-preview');
+  check('No preview image is fetched before interaction',!!card&&!card.querySelector('img')&&!card.hasAttribute('data-open'));
+  const all=[...d.querySelectorAll('.copy a[href],.site-nav a[href]')];
+  for(const details of d.querySelectorAll('details'))details.open=true;
+  await pause(150);
+  const odace=all.find(a=>a.hostname==='odace.com');
+  odace.focus();await pause(450);
+  check('Keyboard focus displays the real Odace capture',card.hasAttribute('data-open')&&card.querySelector('img')?.src.endsWith('/odace.webp'));
+  const rect=card.getBoundingClientRect();
+  check('Desktop card fits inside the viewport',rect.left>=0&&rect.right<=w.innerWidth&&rect.top>=0&&rect.bottom<=w.innerHeight);
+  d.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));await pause(20);
+  check('Escape dismisses without moving keyboard focus',!card.hasAttribute('data-open')&&d.activeElement===odace);
+  const retine=all.find(a=>a.hostname==='retine.io'),jtv=all.find(a=>a.hostname==='jetevois.fr');
+  retine.focus();jtv.focus();await pause(450);
+  check('Rapid link changes cannot show an old image',card.querySelector('img')?.src.endsWith('/jetevois.webp')&&card.querySelector('.link-preview__title').textContent==='Je te vois');
+  let count=0;for(const link of all){link.focus();await pause(140);check('Artwork loads for '+(link.textContent.trim()||link.getAttribute('aria-label')),card.hasAttribute('data-open')&&!!card.querySelector('img')?.naturalWidth);count++;}
+  iframe.style.width='390px';await pause(120);
+  const human=all.find(a=>a.pathname==='/writing/pour-un-humanisme-technophile/');
+  human.focus();await pause(200);
+  const mobile=card.getBoundingClientRect();
+  check('Narrow keyboard preview stays within 390px',mobile.left>=0&&mobile.right<=390&&mobile.top>=0&&mobile.bottom<=w.innerHeight);
+  d.activeElement.blur();w.scrollTo(0,0);await pause(80);
+  check('Mobile page has no horizontal overflow',d.documentElement.scrollWidth<=390);
+  iframe.style.width='1200px';await pause(100);w.scrollTo(0,0);
+  if(w.matchMedia('(any-hover: hover)').matches&&w.matchMedia('(any-pointer: fine)').matches){
+   const over=link=>link.dispatchEvent(new w.PointerEvent('pointerover',{bubbles:true,pointerType:'mouse',clientY:link.getBoundingClientRect().top+5}));
+   const out=link=>link.dispatchEvent(new w.PointerEvent('pointerout',{bubbles:true,pointerType:'mouse'}));
+   over(odace);out(odace);await pause(140);check('Brief pointer pass does not open a card',!card.hasAttribute('data-open'));
+   over(odace);await pause(180);check('Pointer can re-enter before the close delay',card.hasAttribute('data-open'));
+   out(odace);card.dispatchEvent(new w.PointerEvent('pointerenter',{pointerType:'mouse'}));await pause(400);check('Card remains available while hovered',card.hasAttribute('data-open'));
+   w.dispatchEvent(new w.Event('scroll'));await pause(30);check('Pointer preview closes on scroll',!card.hasAttribute('data-open'));
+   over(odace);await pause(180);d.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));over(odace);await pause(150);check('Escape suppresses the current hover',!card.hasAttribute('data-open'));out(odace);
+  }else{
+   odace.dispatchEvent(new w.PointerEvent('pointerover',{bubbles:true,pointerType:'touch'}));await pause(180);check('Touch retains direct navigation without preview',!card.hasAttribute('data-open'));
+  }
+  for(const details of d.querySelectorAll('details'))details.open=false;
+  await pause(60);w.scrollTo(0,0);odace.focus();await pause(250);
+  document.querySelector('#status').textContent='All '+results.children.length+' checks passed · '+count+' links verified';
+ }catch(error){document.querySelector('#status').textContent='FAILED · '+error.message;}
+};
+</script></html>

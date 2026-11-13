@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+<style>@keyframes drift{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(-0.6deg)}}.art{transform-origin:320px 200px;animation:drift 6s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.art{animation:none}}</style>
+<rect width="640" height="400" fill="#fff7e8"/>
+<g class="art"><circle cx="320" cy="200" r="144" fill="#ffd34d"/>
+ <rect x="144" y="106" width="352" height="208" rx="25" fill="#1456df" transform="rotate(-6 320 210)"/>
+ <path d="m154 127 166 123 161-130" fill="none" stroke="#fff7e8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+ <path d="m156 295 112-88m215 86-108-86" stroke="#fff7e8" stroke-width="5"/>
+ <circle cx="491" cy="98" r="39" fill="#f35b45"/><path d="m476 99 11 11 21-25" fill="none" stroke="#fff7e8" stroke-width="7" stroke-linecap="round"/>
+ <circle cx="123" cy="107" r="10" fill="#208866"/></g>
+</svg>

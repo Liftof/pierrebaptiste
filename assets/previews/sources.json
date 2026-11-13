@@ -1,0 +1,60 @@
+{
+  "captured": "2026-11-13",
+  "assets": [
+    {
+      "file": "odace.webp",
+      "source": "https://odace.com",
+      "note": "Chrome desktop screenshot, 1280 × 800"
+    },
+    {
+      "file": "retine.webp",
+      "source": "https://retine.io",
+      "note": "Desktop screenshot, 1280 × 800"
+    },
+    {
+      "file": "jetevois.webp",
+      "source": "https://jetevois.fr",
+      "note": "Desktop screenshot, 1280 × 800"
+    },
+    {
+      "file": "lesdecryptages.webp",
+      "source": "https://lesdecryptages.fr",
+      "note": "Desktop screenshot, 1280 × 800"
+    },
+    {
+      "file": "petitparis.webp",
+      "source": "https://petitparis.app",
+      "note": "Desktop screenshot, 1280 × 800"
+    },
+    {
+      "file": "presidoscope.webp",
+      "source": "https://presidoscope-2027.vercel.app",
+      "note": "Desktop screenshot, 1280 × 800"
+    },
+    {
+      "file": "palette.webp",
+      "source": "https://thepalette.app",
+      "note": "Desktop screenshot, 1280 × 800"
+    },
+    {
+      "file": "quiquoicomment.webp",
+      "source": "https://quiquoicomment.com",
+      "note": "Desktop screenshot, 1280 × 800"
+    },
+    {
+      "file": "labo-paris.webp",
+      "source": "https://labo-paris.com",
+      "note": "Desktop screenshot, 1280 × 800; also shows the original Election Lab application"
+    },
+    {
+      "file": "jaimele19.webp",
+      "source": "https://jaimele19.vercel.app",
+      "note": "Desktop screenshot, 1280 × 800; custom domain unavailable to the capture service"
+    },
+    {
+      "file": "modular-systems.webp",
+      "source": "https://music.apple.com/ca/album/modular-systems/1784107627",
+      "note": "Original album cover from the Apple catalogue"
+    }
+  ]
+}
