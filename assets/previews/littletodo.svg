@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+<style>@keyframes drift{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(0.6deg)}}.art{transform-origin:320px 200px;animation:drift 7s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.art{animation:none}}</style>
+<rect width="640" height="400" fill="#fff7e8"/>
+<g class="art"><rect x="151" y="48" width="339" height="302" rx="27" fill="#1456df" transform="rotate(-5 320 200)"/>
+ <rect x="166" y="63" width="309" height="274" rx="18" fill="#fff7e8"/>
+ <path d="M193 102h254" stroke="#193152" stroke-width="4"/>
+ <circle cx="207" cy="82" r="5" fill="#f35b45"/><circle cx="226" cy="82" r="5" fill="#ffd34d"/><circle cx="245" cy="82" r="5" fill="#208866"/>
+ <circle cx="212" cy="151" r="17" fill="#208866"/><path d="m204 151 6 6 11-13" fill="none" stroke="#fff7e8" stroke-width="4" stroke-linecap="round"/>
+ <path d="M253 151h162" stroke="#a8adad" stroke-width="8" stroke-linecap="round"/>
+ <circle cx="212" cy="215" r="16" fill="#ffd34d"/><path d="M253 215h135" stroke="#1456df" stroke-width="8" stroke-linecap="round"/>
+ <circle cx="212" cy="279" r="16" fill="#f35b45"/><path d="M253 279h155" stroke="#1456df" stroke-width="8" stroke-linecap="round"/>
+ <circle cx="117" cy="271" r="13" fill="#ffd34d"/><circle cx="523" cy="102" r="10" fill="#f35b45"/></g>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+<style>@keyframes drift{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(0.6deg)}}.art{transform-origin:320px 200px;animation:drift 5s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.art{animation:none}}</style>
+<rect width="640" height="400" fill="#fff7e8"/>
+<g class="art"><rect x="102" y="72" width="436" height="260" rx="27" fill="#1456df"/>
+ <path d="M140 280h358M154 279V115" stroke="#fff7e8" stroke-width="4" opacity=".5"/>
+ <path d="m163 259 66-16 55-59 59 19 87-97 58 17" fill="none" stroke="#ffd34d" stroke-width="16" stroke-linejoin="round" stroke-linecap="round"/>
+ <path d="m464 103 28 20-25 29" fill="none" stroke="#ffd34d" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+ <circle cx="282" cy="184" r="19" fill="#f35b45"/><circle cx="430" cy="106" r="19" fill="#f35b45"/>
+ <rect x="354" y="263" width="206" height="63" rx="15" fill="#f35b45" transform="rotate(-9 457 295)"/>
+ <text x="371" y="305" font-family="monospace" font-size="24" fill="#fff7e8" transform="rotate(-9 457 295)">trust me bro.</text></g>
+</svg>
