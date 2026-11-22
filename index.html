@@ -1,6 +1,33 @@
 <!doctype html>
 <html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
+<script>(function(){
+    const key="pb-audience-optout";
+    const urlOff=new URLSearchParams(location.search).get("audience")==="off";
+    try {
+      if(urlOff) localStorage.setItem(key,"1");
+      if(localStorage.getItem(key)==="1") globalThis.pbAudienceDisabled=true;
+    } catch (_) { globalThis.pbAudienceDisabled=true; }
+    if(urlOff) globalThis.pbAudienceDisabled=true;
+    function bind(){
+      const link=document.getElementById("audience-opt-out"), status=document.getElementById("audience-status");
+      if(!link||!status)return;
+      function render(){if(globalThis.pbAudienceDisabled||navigator.globalPrivacyControl||navigator.doNotTrack==="1"||window.doNotTrack==="1")status.textContent="Measurement disabled / Mesure désactivée.";}
+      render();
+      link.addEventListener("click",event=>{
+        globalThis.pbAudienceDisabled=true;
+        try {
+          localStorage.setItem(key,"1");
+          if(localStorage.getItem(key)==="1"){event.preventDefault();render();}
+        } catch (_) {
+          // Follow the link to a document that never sends a measurement.
+        }
+      });
+    }
+    if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",bind,{once:true});
+    else bind();
+  })();</script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1550d6">
@@ -90,7 +117,14 @@
             <a class="email" href="mailto:pierrebaptiste.borges@gmail.com">pierrebaptiste.borges@gmail.com</a>
             <nav class="socials" aria-label="Social profiles"><a href="https://x.com/pierbapt" aria-label="X" title="X"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.64 7.584H.47l8.6-9.835L0 1.154h7.594l5.243 6.932zM17.61 20.644h2.039L6.486 3.24H4.298z"></path></svg></a><a href="https://www.linkedin.com/in/pierrebaptisteborges" aria-label="LinkedIn" title="LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"></path></svg></a></nav>
             <span class="location">Paris, France</span>
-          </footer>
+                <details id="mesure-audience" aria-label="Audience privacy">
+        <summary>Audience privacy / Confidentialité de la mesure</summary>
+        <p lang="en">This site counts views on selected public pages, not individual visitors. The script sends only a site key and a predefined page category to a private counter. The script does not send your submissions, exact URL, cookies or browsing identifiers. Vercel receives the IP address to handle the counter request; the audience counter does not store it in its statistics, which contain only daily totals for this site. If you opt out, only that choice is saved in this browser.</p>
+        <p lang="fr">Ce site compte les vues de certaines pages publiques, pas les visiteurs individuels. Le script transmet seulement le nom du site et une catégorie de page prédéfinie à un compteur privé. Le script ne transmet ni vos saisies, ni l’URL exacte, ni cookie, ni identifiant de navigation. Vercel reçoit l’adresse IP pour traiter la requête du compteur ; celui-ci ne la conserve pas dans ses statistiques, limitées à des totaux quotidiens pour ce site. En cas de refus, seul ce choix est mémorisé dans ce navigateur.</p>
+        <p><a id="audience-opt-out" href="?audience=off#mesure-audience">Opt out / Refuser la mesure</a> <span id="audience-status" role="status" aria-live="polite"></span></p>
+        <p>Contact / Contact : <a href="https://pierrebaptiste.me/about/">Pierre-Baptiste Borges</a>.</p>
+      </details>
+</footer>
         </div>
       </div>
     </main>
@@ -154,17 +188,7 @@
     }
   ]
 }</script>
-  <script>
-    // Preview deployments should not contribute to production analytics.
-    if (['pierrebaptiste.me', 'www.pierrebaptiste.me'].includes(location.hostname)) {
-      const analytics = document.createElement('script');
-      analytics.src = 'https://datafa.st/js/script.js';
-      analytics.defer = true;
-      analytics.dataset.websiteId = '687e582ea4a3f0b6ffad1ca7';
-      analytics.dataset.domain = 'pierrebaptiste.me';
-      document.head.append(analytics);
-    }
-  </script>
+  <script>(function(){if(!["pierrebaptiste.me"].includes(location.hostname)||location.pathname!=="/"||window!==window.top||new URLSearchParams(location.search).has("embed"))return;const s=document.createElement("script");s.defer=true;s.src="/audience-v1.js";Object.assign(s.dataset,{"site":"portfolio","page":"home","path":"/","endpoint":"https://pb-audience.vercel.app/api/collect"});document.head.appendChild(s)})();</script>
 <script>
     function revealWriting() { if (location.hash === '#writing') { const section=document.getElementById('writing'); section.open=true; section.scrollIntoView({block:'start'}); } }
     revealWriting(); addEventListener('hashchange',revealWriting);
